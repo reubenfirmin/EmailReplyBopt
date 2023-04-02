@@ -1,10 +1,10 @@
 # Email Reply Bot
 
-Instead of setting a vacation responder the next time you're away from your email, why not hook up GPT and have it take care of your email for you? 
+Instead of setting a vacation responder the next time you're away from your email, why not hook up GPT and have it take care of your email for you? This project makes it easy to do just that.
 
 # Demo
 
-I have a bot listening to hobert4@zohomail.com. Feel free to converse with it. (Note that anything you send will be submitted to OpenAI's server; the bot will delete emails from the inbox after processing.)
+I have a bot listening to hobert4@zohomail.com (at least until I hit my OpenAI monthly limits.) Feel free to converse with it. Note that anything you send will be submitted to OpenAI's server; the bot will delete emails from the inbox after processing. Also note that some of the prompts I configured have "personality".
 
 # Behavior
 * Checks inbox every minute for new messages
