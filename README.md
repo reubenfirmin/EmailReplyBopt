@@ -4,7 +4,7 @@ Instead of setting a vacation responder the next time you're away from your emai
 
 # Demo
 
-I have a bot listening to hobert4@zohomail.com (at least until I hit my OpenAI monthly limits.) Feel free to converse with it. Note that anything you send will be submitted to OpenAI's server; the bot will delete emails from the inbox after processing. Also note that some of the prompts I configured have "personality".
+I have a bot listening to hobert4@zohomail.com (at least until I hit my OpenAI monthly limits.) Feel free to converse with it. Note that anything you send will be submitted to OpenAI's server; the bot will delete emails from the inbox after processing. Also note that some of the prompts I configured can be sarcastic.
 
 # Behavior
 * Checks inbox every minute for new messages
