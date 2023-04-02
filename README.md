@@ -21,9 +21,9 @@ mvn install
 
 Configure it:
 
-1) 1cp src/main/resources/application.yml.template src/main/resources/application.yml1
+1) `cp src/main/resources/application.yml.template src/main/resources/application.yml`
 
-2) Edit application.yml, and add your email credentials to the imap and smtp sections.
+2) Edit application.yml, and add your email credentials to the imap and smtp sections. Add your OpenAI key (https://platform.openai.com/account/api-keys).
 
 3) Customize the replyTo. Your email provider may require the replyTo email matches your smpt user.
 
