@@ -11,6 +11,11 @@ import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 import javax.mail.search.FlagTerm
 
+/**
+ * Receiving and sending email. Uses the java-mail api, which is a little verbose, but should be robust.
+ * Note that this disregards everything we don't care about for the sake of the bot. We don't download or handle
+ * attachments.
+ */
 class EmailTransport(val config: Configuration) {
 
     private val logger = LoggerFactory.getLogger(javaClass)
@@ -27,6 +32,9 @@ class EmailTransport(val config: Configuration) {
         smtpProps["mail.smtp.starttls.enable"] = "true"
     }
 
+    /**
+     * Get email from an IMAP inbox.
+     */
     fun getEmail(): List<EmailParser.EmailMessage> {
         val session = Session.getInstance(imapProps)
 
@@ -53,6 +61,9 @@ class EmailTransport(val config: Configuration) {
         }
     }
 
+    /**
+     * Send a reply to an email using SMTP.
+     */
     fun sendEmail(message: EmailParser.EmailMessage, reply: String) {
         val session = Session.getInstance(smtpProps, object : Authenticator() {
             override fun getPasswordAuthentication(): PasswordAuthentication {

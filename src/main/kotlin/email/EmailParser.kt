@@ -6,7 +6,9 @@ import javax.mail.Message
 import javax.mail.Multipart
 import javax.mail.internet.InternetAddress
 
-
+/**
+ * Handle parsing multipart messages, which can be recursively structured.
+ */
 object EmailParser {
 
     private val logger = LoggerFactory.getLogger(javaClass)
