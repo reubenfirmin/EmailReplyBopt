@@ -40,12 +40,13 @@ class EmailTransport(val config: Configuration) {
         logger.info("Found ${messages.size} messages")
 
         return messages.map { message ->
-            if (config.deleteMail) {
-                message.setFlag(DELETED, true)
-            } else {
-                message.setFlag(SEEN, true)
+            message.toEmailMessage().apply {
+                if (config.deleteMail) {
+                    message.setFlag(DELETED, true)
+                } else {
+                    message.setFlag(SEEN, true)
+                }
             }
-            message.toEmailMessage()
         }.apply {
             inbox.close(false)
             store.close()

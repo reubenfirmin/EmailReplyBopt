@@ -62,7 +62,7 @@ class GptResponder(val config: Configuration) {
             -----
             Subject: ${message.subject}
             
-            ${message.message}                      
+            ${message.message.take(3600)}                      
         """.trimIndent()
 
     }
