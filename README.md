@@ -13,18 +13,15 @@ I have a bot listening to hobert4@zohomail.com. Feel free to converse with it. (
 
 # Install And Configuration
 
-To build it:
+Build it:
 
 ```
 mvn install
 ```
 
-To configure it:
+Configure it:
 
-1) 
-```
-cp src/main/resources/application.yml.template src/main/resources/application.yml
-```
+1) 1cp src/main/resources/application.yml.template src/main/resources/application.yml1
 
 2) Edit application.yml, and add your email credentials to the imap and smtp sections.
 
@@ -32,7 +29,7 @@ cp src/main/resources/application.yml.template src/main/resources/application.ym
 
 4) If you like, customize or add to the prompts. 
 
-To run it:
+Run it:
 
 ```
 mvn exec:java
