@@ -54,7 +54,7 @@ class GptResponder(val config: Configuration) {
     }
 
     private fun prompt(message: EmailParser.EmailMessage): String {
-        val prompt = prompts.get(message.replyTo!! + message.subject)
+        val prompt = prompts.get(message.replyTo!!)
         logger.info("Using prompt: $prompt")
         return """
             $prompt. the sender's name is ${message.senderName}. sign the email as ${config.replyTo.signature}. the email follows
