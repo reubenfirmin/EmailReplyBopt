@@ -41,9 +41,9 @@ class EmailTransport(val config: Configuration) {
 
         return messages.map { message ->
             if (config.deleteMail) {
-//                message.setFlag(DELETED, true)
+                message.setFlag(DELETED, true)
             } else {
-//                message.setFlag(SEEN, true)
+                message.setFlag(SEEN, true)
             }
             message.toEmailMessage()
         }.apply {
