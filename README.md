@@ -11,9 +11,6 @@ I have a bot listening to hobert4@zohomail.com. Feel free to converse with it. (
 * Adopts and maintains a "personality" per sender (prompts expire after 10 minutes, so you'll get a different personality after some time)
 * Replies with a GPT created response
 
-# Data Handling
-* 
-
 # Install And Configuration
 
 To build it:
