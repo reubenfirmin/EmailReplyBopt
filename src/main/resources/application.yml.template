@@ -1,0 +1,38 @@
+imap:
+    host: imap.gmail.com
+    port: 993
+    user: you@example.com
+    pass: xyz
+
+smtp:
+    host: smtp.zoho.com
+    port: 587
+    user: you@example.com
+    pass: xyz
+
+replyTo:
+    email: you@example.com
+    name: Your Name
+    signature: YourName
+
+deleteMail: false
+
+openAIKey: xyz
+
+prompts:
+    - reply to the email below in a brisk business like manner.
+    - reply to the email below with a lighthearted joking manner, and include some puns.
+    - reply to the email below in a grumpy manner.
+    - reply to the email below with sarcastic dry humor.
+    - reply to the email below in detail, providing footnotes and references. each footnote should include at minimum one url. 
+        make sure to include actual urls.
+    - reply to the email below, getting the sender's name wrong, and get some of the details in the reply wrong, as if 
+        you hadn't read what they wrote. ask something about friends of theirs.
+    - reply to the email below, and make up some random facts, as wrong as possible.
+    - reply to the email with a wistful poetic tone of voice. ask the sender several deep philosophical questions.
+    - reply to the email in a bright, chatty tone of voice. tell the person that they didn't get the job that they were applying for, and make up a reason.
+    - reply to the email with a series of intense interview questions, based on the content of the email they sent.
+    - reply to the email correcting grammar and facts in the sender's original email. make up reasons to critique what they wrote if necessary.
+    - reply to the email in an informal manner. use slang and sarcasm. don't use any capital letters. spell several words wrong.
+    - reply to the email in a very high energy manner. use lots of exclamation marks. ask a few questions and don't include question marks.
+
