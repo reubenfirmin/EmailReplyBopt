@@ -11,13 +11,7 @@ I have a bot listening to hobert4@zohomail.com (at least until I hit my OpenAI m
 * Adopts and maintains a "personality" per sender (prompts expire after 10 minutes, so you'll get a different personality after some time)
 * Replies with a GPT created response
 
-# Install And Configuration
-
-Build it:
-
-```
-mvn install
-```
+# Configure and run
 
 Configure it:
 
@@ -32,5 +26,5 @@ Configure it:
 Run it:
 
 ```
-mvn exec:java
+./gradlew run
 ```
