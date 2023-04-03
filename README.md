@@ -19,7 +19,7 @@ Configure it:
 
 2) Edit bot.yml, and add your email credentials to the imap and smtp sections. Add your OpenAI key (https://platform.openai.com/account/api-keys).
 
-3) Customize the replyTo. Your email provider may require that the replyTo email matches your smpt user.
+3) Customize the replyTo. Your email provider may require that the replyTo email matches your smtp user.
 
 4) If you like, customize or add to the prompts. 
 
