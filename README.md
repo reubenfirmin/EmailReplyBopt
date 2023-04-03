@@ -32,5 +32,3 @@ Run it:
 ```
 java -jar bot.jar bot.yml
 ```
-
-You can deploy bot.jar and bot.yml together onto a server if you like.
