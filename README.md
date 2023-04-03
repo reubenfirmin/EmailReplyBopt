@@ -1,4 +1,4 @@
-# Email Reply Bot
+# GPT Email Reply Bot
 
 Instead of setting a vacation responder the next time you're away from your email, why not hook up GPT and have it take care of your email for you? This project makes it easy to do just that.
 
