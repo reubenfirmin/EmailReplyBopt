@@ -38,26 +38,26 @@ class EmailTransport(val config: Configuration) {
     fun getEmail(): List<EmailParser.EmailMessage> {
         val session = Session.getInstance(imapProps)
 
-        val store = session.getStore("imap")
-        store.connect(config.imap.user, config.imap.pass)
+        return session.getStore("imap").let { store ->
+            store.connect(config.imap.user, config.imap.pass)
+            store.getFolder("INBOX").let { inbox ->
+                inbox.open(Folder.READ_WRITE)
 
-        val inbox = store.getFolder("INBOX")
-        inbox.open(Folder.READ_WRITE)
-
-        val messages = inbox.search(FlagTerm(Flags(SEEN), false))
-        logger.info("Found ${messages.size} messages")
-
-        return messages.map { message ->
-            message.toEmailMessage().apply {
-                if (config.deleteMail) {
-                    message.setFlag(DELETED, true)
-                } else {
-                    message.setFlag(SEEN, true)
+                inbox.search(FlagTerm(Flags(SEEN), false)).map { message ->
+                    // transform and mark seen or deleted
+                    message.toEmailMessage().apply {
+                        if (config.deleteMail) {
+                            message.setFlag(DELETED, true)
+                        } else {
+                            message.setFlag(SEEN, true)
+                        }
+                    }
+                }.apply {
+                    inbox.close()
                 }
+            }.apply {
+                store.close()
             }
-        }.apply {
-            inbox.close(false)
-            store.close()
         }
     }
 

@@ -28,7 +28,7 @@ object EmailParser {
         } else if (body is String) {
             listOf(body)
         } else {
-            logger.warn("don't know what to do with $body")
+            logger.warn("don't know what to do with (main) $body")
             listOf("")
         }
 
@@ -39,6 +39,7 @@ object EmailParser {
 
     private fun processBodyPart(bodyPart: BodyPart): String {
         return if (bodyPart.isMimeType("text/plain") || bodyPart.isMimeType("text/html")) {
+            // gpt can handle (and understand the formatting of) html elements, so don't strip them
             bodyPart.content as String
         } else if (bodyPart.content is Multipart) {
             // Handle multipart content
@@ -47,10 +48,11 @@ object EmailParser {
 
             (0 until count).map { idx ->
                 val nestedBodyPart = multipart.getBodyPart(idx)
-                processBodyPart(nestedBodyPart) // Recursively process nested BodyPart
+                processBodyPart(nestedBodyPart) // recursively process nested BodyPart
             }.joinToString("\n")
         } else {
-            logger.warn("Don't know what to do with $bodyPart")
+            // if we wanted attachments and other misc, handle here
+            logger.warn("Don't know what to do with (sub) $bodyPart")
             ""
         }
     }
