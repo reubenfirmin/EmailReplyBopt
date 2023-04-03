@@ -7,21 +7,20 @@ import email.EmailTransport
 import model.Configuration
 import org.slf4j.LoggerFactory
 import java.io.File
-import java.time.Duration
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger
-import javax.mail.Message
+import kotlin.system.exitProcess
 
 /**
  * An email auto reply bot. Uses GPT to craft a relevant response.
  */
-class EmailReplyBot {
+class EmailReplyBot(conf: File) {
 
     private val objectMapper: ObjectMapper = ObjectMapper(YAMLFactory()).registerKotlinModule()
-    private val config: Configuration
-    private val emailTransport: EmailTransport
-    private val gptResponder: GptResponder
+    private val config: Configuration = objectMapper.readValue(conf, Configuration::class.java)
+    private val emailTransport: EmailTransport = EmailTransport(config)
+    private val gptResponder: GptResponder = GptResponder(config)
     private val logger = LoggerFactory.getLogger(javaClass)
 
     // use a single threadpool; this won't scale to thousands of requests per minute, but that's not the intended
@@ -29,21 +28,13 @@ class EmailReplyBot {
     private val executor = Executors.newFixedThreadPool(40)
     private val counter = AtomicInteger(0)
 
-    init {
-        val file = File(Thread.currentThread().contextClassLoader.getResource("application.yml")?.file
-            ?: throw Exception("Could not find application.yml on classpath"))
-        config = objectMapper.readValue(file, Configuration::class.java)
-        emailTransport = EmailTransport(config)
-        gptResponder = GptResponder(config)
-    }
-
     fun listen() {
         while (true) {
             emailTransport.getEmail().forEach { message ->
                 process(message)
             }
             logger.info("Total processed: ${counter.get()}")
-            Thread.sleep(Duration.ofMinutes(1))
+            Thread.sleep(60 * 1000) // 1 minute
         }
     }
 
@@ -65,7 +56,16 @@ class EmailReplyBot {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            EmailReplyBot().listen()
+            if (args.size != 1) {
+                println("Supply the path to the config file; e.g. java -jar ./bot.jar /etc/bot.yml")
+                exitProcess(1)
+            }
+            val conf = File(args[0])
+            if (!conf.exists()) {
+                println("The config file can't be located at $conf")
+                exitProcess(1)
+            }
+            EmailReplyBot(conf).listen()
         }
     }
 }

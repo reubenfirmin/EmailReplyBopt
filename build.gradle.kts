@@ -1,7 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.8.10"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
 repositories {
@@ -37,4 +39,16 @@ tasks.withType<KotlinCompile> {
 tasks.register<JavaExec>("run") {
     main = "EmailReplyBot"
     classpath = sourceSets["main"].runtimeClasspath
+}
+
+tasks.withType<ShadowJar> {
+    archiveFileName.set("bot.jar")
+    destinationDirectory.set(project.projectDir)
+    manifest {
+        attributes["Main-Class"] = "EmailReplyBot"
+    }
+}
+
+tasks.register("bot") {
+    dependsOn("shadowJar")
 }

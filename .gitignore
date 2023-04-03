@@ -37,8 +37,9 @@ build/
 ### Mac OS ###
 .DS_Store
 
-**/application.yml
 hobert
 .idea
 build
 .gradle
+bot.jar
+/bot.yml

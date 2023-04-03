@@ -15,16 +15,22 @@ I have a bot listening to hobert4@zohomail.com (at least until I hit my OpenAI m
 
 Configure it:
 
-1) `cp src/main/resources/application.yml.template src/main/resources/application.yml`
+1) `cp bot.yml.template bot.yml`
 
-2) Edit application.yml, and add your email credentials to the imap and smtp sections. Add your OpenAI key (https://platform.openai.com/account/api-keys).
+2) Edit bot.yml, and add your email credentials to the imap and smtp sections. Add your OpenAI key (https://platform.openai.com/account/api-keys).
 
 3) Customize the replyTo. Your email provider may require the replyTo email matches your smpt user.
 
 4) If you like, customize or add to the prompts. 
 
-Run it:
+Build a self contained jar that can be deployed:
+```
+./gradlew bot 
+```
 
+Run it:
 ```
-./gradlew run
+java -jar bot.jar bot.yml
 ```
+
+You can deploy bot.jar and bot.yml together onto a server if you like.
