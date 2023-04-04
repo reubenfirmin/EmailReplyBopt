@@ -34,7 +34,7 @@ object EmailParser {
 
         val msg = msgs.joinToString("\n")
 
-        return EmailMessage(senderName, replyTo, this.subject!!, msg)
+        return EmailMessage(senderName, replyTo, this.subject ?: "no subject", msg)
     }
 
     private fun processBodyPart(bodyPart: BodyPart): String {
